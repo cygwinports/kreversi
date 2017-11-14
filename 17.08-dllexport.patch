@@ -1,0 +1,130 @@
+--- origsrc/kreversi-17.08.3/kexthighscore.h	2017-11-01 23:18:59.000000000 -0500
++++ src/kreversi-17.08.3/kexthighscore.h	2017-11-13 15:01:46.674450200 -0600
+@@ -40,23 +40,23 @@ extern ManagerPrivate *internal;
+ /**
+  * Get the current game type.
+  */
+-KDEGAMES_EXPORT uint gameType();
++uint gameType();
+ 
+ /**
+  * Set the current game type.
+  */
+-KDEGAMES_EXPORT void setGameType(uint gameType);
++void setGameType(uint gameType);
+ 
+ /**
+  * Configure the highscores.
+  * @return true if the configuration has been modified and saved
+  */
+-KDEGAMES_EXPORT bool configure(QWidget *parent);
++bool configure(QWidget *parent);
+ 
+ /**
+  * Show the highscores lists.
+  */
+-KDEGAMES_EXPORT void show(QWidget *parent);
++void show(QWidget *parent);
+ 
+ /**
+  * Submit a score. See @ref Manager for usage example.
+@@ -64,19 +64,19 @@ KDEGAMES_EXPORT void show(QWidget *paren
+  * @param score the players score
+  * @param widget a widget used as parent for error message box.
+  */
+-KDEGAMES_EXPORT void submitScore(const Score &score, QWidget *widget);
++void submitScore(const Score &score, QWidget *widget);
+ 
+ /**
+  * @return the last score in the local list of highscores. The worst possible
+  * score if there are less items than the maximum number.
+  */
+-KDEGAMES_EXPORT Score lastScore();
++Score lastScore();
+ 
+ /**
+  * @return the first score in the local list of highscores (the worst possible
+  * score if there is no entry).
+  */
+-KDEGAMES_EXPORT Score firstScore();
++Score firstScore();
+ 
+ /**
+  * This class manages highscores and players entries (several players can
+@@ -137,7 +137,7 @@ KDEGAMES_EXPORT Score firstScore();
+  * and the value of the items that you have optionally added
+  * with Score::setData() player name and date are set automatically.
+  */
+-class KDEGAMES_EXPORT Manager
++class Manager
+ {
+  public:
+     /**
+--- origsrc/kreversi-17.08.3/kexthighscore_item.h	2017-11-01 23:18:59.000000000 -0500
++++ src/kreversi-17.08.3/kexthighscore_item.h	2017-11-13 15:02:07.395351000 -0600
+@@ -36,7 +36,7 @@ namespace KExtHighscore
+  * a highscore element (such as the score, the date, ...) or a player
+  * info (such as the player name, the best score, ...).
+  */
+-class KDEGAMES_EXPORT Item
++class Item
+ {
+  public:
+     /**
+@@ -168,14 +168,14 @@ class KDEGAMES_EXPORT Item
+ enum ScoreType { Won = 0, Lost = -1, Draw = -2 };
+ 
+ class Score;
+-KDEGAMES_EXPORT QDataStream &operator <<(QDataStream &stream, const Score &score);
+-KDEGAMES_EXPORT QDataStream &operator >>(QDataStream &stream, Score &score);
++QDataStream &operator <<(QDataStream &stream, const Score &score);
++QDataStream &operator >>(QDataStream &stream, Score &score);
+ 
+ /**
+  * This class contains data for a score. You should not inherit from
+  * this class but reimplement the methods in Highscores.
+  */
+-class KDEGAMES_EXPORT Score
++class Score
+ {
+  public:
+     Score(ScoreType type = Won);
+@@ -240,13 +240,13 @@ class KDEGAMES_EXPORT Score
+ 
+     friend class MultiplayerScores;
+ 
+-    friend KDEGAMES_EXPORT QDataStream &operator <<(QDataStream &stream, const Score &score);
+-    friend KDEGAMES_EXPORT QDataStream &operator >>(QDataStream &stream, Score &score);
++    friend QDataStream &operator <<(QDataStream &stream, const Score &score);
++    friend QDataStream &operator >>(QDataStream &stream, Score &score);
+ };
+ 
+ class MultiplayerScores;
+-KDEGAMES_EXPORT QDataStream &operator <<(QDataStream &stream, const MultiplayerScores &score);
+-KDEGAMES_EXPORT QDataStream &operator >>(QDataStream &stream, MultiplayerScores &score);
++QDataStream &operator <<(QDataStream &stream, const MultiplayerScores &score);
++QDataStream &operator >>(QDataStream &stream, MultiplayerScores &score);
+ 
+ /**
+  * This class is used to store and show scores for multiplayer games.
+@@ -268,7 +268,7 @@ KDEGAMES_EXPORT QDataStream &operator >>
+  * ms.addScore(1, score);
+  * </pre>
+  */
+-class KDEGAMES_EXPORT MultiplayerScores
++class MultiplayerScores
+ {
+  public:
+     MultiplayerScores();
+@@ -307,9 +307,9 @@ class KDEGAMES_EXPORT MultiplayerScores
+     class MultiplayerScoresPrivate;
+     MultiplayerScoresPrivate *d;
+ 
+-    friend KDEGAMES_EXPORT QDataStream &operator <<(QDataStream &stream,
++    friend QDataStream &operator <<(QDataStream &stream,
+                                     const MultiplayerScores &score);
+-    friend KDEGAMES_EXPORT QDataStream &operator >>(QDataStream &stream,
++    friend QDataStream &operator >>(QDataStream &stream,
+                                     MultiplayerScores &score);
+ };
+ 
